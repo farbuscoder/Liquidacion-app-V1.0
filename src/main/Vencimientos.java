@@ -1,3 +1,5 @@
+package main;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -153,7 +155,7 @@ public Vencimientos(String nombre, String codigo, String vencimiento){
         }catch(IllegalArgumentException e){
             System.out.printf("Exception: %s\n\n", e.getMessage());
         }// fin del catch
-    }// fin del metodo buscar Vencimientos
+    }// fin del metodo buscar main.Vencimientos
 
 
     //MODIFICAR UN VENCIMIENTO

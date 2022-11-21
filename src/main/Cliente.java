@@ -1,7 +1,6 @@
-import java.math.BigInteger;
-import java.sql.SQLClientInfoException;
+package main;
+
 import java.util.*;
-import javax.swing.*;
 import javax.swing.JOptionPane;
 
 
@@ -53,7 +52,7 @@ public class Cliente {
             System.out.println("");
             System.out.println("1. Crear nuevo Cliente");
             System.out.println("2. Mostrar Clientes");
-            System.out.println("3. Buscar Cliente por codigo");
+            System.out.println("3. Buscar Cliente por código");
             System.out.println("4. Modificar clientes");
             System.out.println("5. Eliminar cliente"); // pronto sera agregado
             System.out.println("6. Salir");
@@ -94,14 +93,14 @@ public class Cliente {
         }// fin del ciclo while
     }// fin del metodo opcionesCliente
 
-    //Metodo para agregar una nueva instancia de la clase Cliente.
+    //Metodo para agregar una nueva instancia de la clase main.Cliente.
     public static void agregarCliente(){
         try{
             // creamos el objeto cliente.
             Cliente cliente = new Cliente();
 
             // Tomamos los valores ingresados por el usuario con JOptionPane y el metodo showInputDialog.
-            String codigo_Cliente = JOptionPane.showInputDialog("Ingrese el codigo del Cliente: ");
+            String codigo_Cliente = JOptionPane.showInputDialog("Ingrese el codigo del main.Cliente: ");
 
             String nombre_Fantasia = JOptionPane.showInputDialog("Ingrese el Nombre completo: ");
 
@@ -128,18 +127,12 @@ public class Cliente {
             listaDeClientes.add(cliente);
 
             //Mostramos un mensaje al usuario.
-            JOptionPane.showMessageDialog(null,"El Cliente ha sido agregado exitosamente!");
+            JOptionPane.showMessageDialog(null,"El main.Cliente ha sido agregado exitosamente!");
         }catch(IllegalArgumentException e){
             System.out.println("No se pudo agregar el cliente");
         }// fin del catch
     }// fin del metodo agregar cliente
 
-    /*//Metodo para generar una key.
-    public static String generarKey(){
-        Random random = new Random();
-        String keyCode = new BigInteger(100,random ).toString(32);
-        return keyCode;
-    }*/
 
     //MOSTRAR CLIENTES.
     public static void mostrarCliente(){
@@ -152,7 +145,7 @@ public class Cliente {
         // Con un ciclo for recorremos el arraylist listaDeClientes y mostramos los datos de cada cliente agregado.
         for(int i = 0;i< listaDeClientes.size();i++){
             System.out.println("================================");
-            System.out.println("Cliente numero: " + i + "\nNombre: " + listaDeClientes.get(i).obtenerNombre() + "\n" + "Email: " + listaDeClientes.get(i).obtenerEmail() + "\n" + "Razon social: " + listaDeClientes.get(i).obtenerRazonSocial() + "\n" + "CUIT: " + listaDeClientes.get(i).obtenerCuitPrefijo()+"-"+listaDeClientes.get(i).obtenerCuitMedio()+"-"+listaDeClientes.get(i).obtenerCuitSufijo());
+            System.out.println("main.Cliente numero: " + i + "\nNombre: " + listaDeClientes.get(i).obtenerNombre() + "\n" + "Email: " + listaDeClientes.get(i).obtenerEmail() + "\n" + "Razon social: " + listaDeClientes.get(i).obtenerRazonSocial() + "\n" + "CUIT: " + listaDeClientes.get(i).obtenerCuitPrefijo()+"-"+listaDeClientes.get(i).obtenerCuitMedio()+"-"+listaDeClientes.get(i).obtenerCuitSufijo());
         }
     }// fin metodo mostrar clientes
 
@@ -199,37 +192,37 @@ public class Cliente {
                                     String nombreCompleto = JOptionPane.showInputDialog("Ingrese el nuevo nombre: ");
                                     listaDeClientes.get(i).setNombreFantasia(nombreCompleto);
                                     //Mostramos un mensaje al usuario.
-                                    JOptionPane.showMessageDialog(null,"El Cliente ha sido modificado exitosamente!");
+                                    JOptionPane.showMessageDialog(null,"El main.Cliente ha sido modificado exitosamente!");
                                     break;
                                 case 2:
                                     String razonSocial = JOptionPane.showInputDialog("Ingrese la nueva razon social: ");
                                     listaDeClientes.get(i).setRazonSocial(razonSocial);
                                     //Mostramos un mensaje al usuario.
-                                    JOptionPane.showMessageDialog(null,"El Cliente ha sido modificado exitosamente!");
+                                    JOptionPane.showMessageDialog(null,"El main.Cliente ha sido modificado exitosamente!");
                                     break;
                                 case 3:
                                     String emailCliente = JOptionPane.showInputDialog("Ingrese el nuevo email: ");
                                     listaDeClientes.get(i).setEmail(emailCliente);
                                     //Mostramos un mensaje al usuario.
-                                    JOptionPane.showMessageDialog(null,"El Cliente ha sido modificado exitosamente!");
+                                    JOptionPane.showMessageDialog(null,"El main.Cliente ha sido modificado exitosamente!");
                                     break;
                                 case 4:
                                     int prefijoCuit = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nuevo prefijo: "));
                                     listaDeClientes.get(i).setCuitPrefijo(prefijoCuit);
                                     //Mostramos un mensaje al usuario.
-                                    JOptionPane.showMessageDialog(null,"El Cliente ha sido modificado exitosamente!");
+                                    JOptionPane.showMessageDialog(null,"El main.Cliente ha sido modificado exitosamente!");
                                     break;
                                 case 5:
                                     int medioCuit = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nuevo cuit medio: "));
                                     listaDeClientes.get(i).setCuitMedio(medioCuit);
                                     //Mostramos un mensaje al usuario.
-                                    JOptionPane.showMessageDialog(null,"El Cliente ha sido modificado exitosamente!");
+                                    JOptionPane.showMessageDialog(null,"El main.Cliente ha sido modificado exitosamente!");
                                     break;
                                 case 6:
                                     int sufijoCuit = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nuevo sufijo: "));
                                     listaDeClientes.get(i).setCuitSufijo(sufijoCuit);
                                     //Mostramos un mensaje al usuario.
-                                    JOptionPane.showMessageDialog(null,"El Cliente ha sido modificado exitosamente!");
+                                    JOptionPane.showMessageDialog(null,"El main.Cliente ha sido modificado exitosamente!");
                                     break;
                                 case 7:
                                     salir = true;
@@ -273,7 +266,7 @@ public class Cliente {
                 if(listaDeClientes.get(i).obtenerCodigoCliente().equals(codigo)){
                     System.out.println("================================");
                     System.out.println("Resultado de la busqueda: ");
-                    System.out.println("Cliente numero: " + i + "\nCodigo de cliente: " + listaDeClientes.get(i).obtenerCodigoCliente() + "\nNombre Completo: " + listaDeClientes.get(i).obtenerNombre() + "\n" + "Email: " + listaDeClientes.get(i).obtenerEmail() + "\n" + "Razon social: " + listaDeClientes.get(i).obtenerRazonSocial() + "\n" + "CUIT: " + listaDeClientes.get(i).obtenerCuitPrefijo()+"-"+listaDeClientes.get(i).obtenerCuitMedio()+"-"+listaDeClientes.get(i).obtenerCuitSufijo());
+                    System.out.println("main.Cliente numero: " + i + "\nCodigo de cliente: " + listaDeClientes.get(i).obtenerCodigoCliente() + "\nNombre Completo: " + listaDeClientes.get(i).obtenerNombre() + "\n" + "Email: " + listaDeClientes.get(i).obtenerEmail() + "\n" + "Razon social: " + listaDeClientes.get(i).obtenerRazonSocial() + "\n" + "CUIT: " + listaDeClientes.get(i).obtenerCuitPrefijo()+"-"+listaDeClientes.get(i).obtenerCuitMedio()+"-"+listaDeClientes.get(i).obtenerCuitSufijo());
                     position = i;
                 }
             }
@@ -305,7 +298,7 @@ public class Cliente {
                     position = i;
                     // Quitamos el objeto de la arrayList usando el metodo remove().
                     listaDeClientes.remove(position);
-                    JOptionPane.showMessageDialog(null,"El Cliente ha sido eliminado exitosamente!");
+                    JOptionPane.showMessageDialog(null,"El main.Cliente ha sido eliminado exitosamente!");
                 }
             }
 
@@ -389,4 +382,4 @@ public class Cliente {
         return cuitSufijo;
     }
 
-} // fin de clase Cliente
+} // fin de clase main.Cliente

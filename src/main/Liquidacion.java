@@ -1,5 +1,6 @@
+package main;
+
 import javax.swing.*;
-import java.math.BigInteger;
 import java.util.*;
 
 public class Liquidacion {
@@ -54,9 +55,9 @@ public class Liquidacion {
             System.out.println("");
             System.out.println("1. Crear nueva Liquidacion");
             System.out.println("2. Mostrar Liquidaciones");
-            System.out.println("3. Buscar Liquidacion por codigo");
-            System.out.println("4. Modificar liquidacion"); // pronto sera agregado
-            System.out.println("5. Eliminar liquidacion"); // pronto sera agregado
+            System.out.println("3. Buscar Liquidacion por código");
+            System.out.println("4. Modificar liquidacion");
+            System.out.println("5. Eliminar liquidacion");
             System.out.println("6. Salir");
             System.out.println("");
             System.out.println("====================================");
@@ -135,7 +136,7 @@ public class Liquidacion {
             for(int i = 0;i< listaDeLiquidaciones.size();i++){
                 System.out.println("================================");
                 //Agregar còdigo liquidacion antes del nombre
-                System.out.println("Liquidacion numero: " + (i + 1) + "\nCodigo liquidacion: "+ listaDeLiquidaciones.get(i).getCodigoLiquidacion() + "\nNombre: " + listaDeLiquidaciones.get(i).getNombreLiquidacion() + "\n" );
+                System.out.println("main.Liquidacion numero: " + (i + 1) + "\nCodigo liquidacion: "+ listaDeLiquidaciones.get(i).getCodigoLiquidacion() + "\nNombre: " + listaDeLiquidaciones.get(i).getNombreLiquidacion() + "\n" );
             }
         }catch(IllegalAccessError error){
             System.out.println("Ha ocurrido un error");
@@ -153,7 +154,7 @@ public class Liquidacion {
                 if(listaDeLiquidaciones.get(i).getCodigoLiquidacion().equals(codigo)){
                     System.out.println("================================");
                     System.out.println("Resultado de la busqueda: ");
-                    System.out.println("Liquidacion numero: " + (i + 1) + "\nCodigo liquidacion: "+ listaDeLiquidaciones.get(i).getCodigoLiquidacion() + "\nNombre: " + listaDeLiquidaciones.get(i).getNombreLiquidacion() + "\n" );
+                    System.out.println("main.Liquidacion numero: " + (i + 1) + "\nCodigo liquidacion: "+ listaDeLiquidaciones.get(i).getCodigoLiquidacion() + "\nNombre: " + listaDeLiquidaciones.get(i).getNombreLiquidacion() + "\n" );
                     position = i;
                 }
             }
@@ -171,7 +172,7 @@ public class Liquidacion {
         }// fin del catch
     }// fin del metodo buscarLiquidaciones
 
-    //BUSCAR LIQUIDACIONES PARA CODIGO
+    //BUSCAR LIQUIDACIONES POR CODIGO
     public static String buscarLiquidaciones_Cod(String codigo){
 
             //String codigo = JOptionPane.showInputDialog("Ingrese el código de la liquidación que desea buscar: ");
@@ -185,7 +186,7 @@ public class Liquidacion {
             return codigoDevuelto;
     }
 
-    // BUSCAR LIQUIDACIONES PARA NOMBRE
+    // BUSCAR LIQUIDACIONES POR NOMBRE
     public static String buscarLiquidaciones_Nombre(String codigo){
 
         //String codigo = JOptionPane.showInputDialog("Ingrese el código de la liquidación que desea buscar: ");
@@ -195,7 +196,7 @@ public class Liquidacion {
             if(listaDeLiquidaciones.get(i).getCodigoLiquidacion().equals(codigo)){
                 //System.out.println("================================");
                 //System.out.println("Resultado de la busqueda: ");
-                //System.out.println("Liquidacion numero: " + (i + 1) + "\nCodigo liquidacion: "+ listaDeLiquidaciones.get(i).getCodigoLiquidacion() + "\nNombre: " + listaDeLiquidaciones.get(i).getNombreLiquidacion() + "\n" );
+                //System.out.println("main.Liquidacion numero: " + (i + 1) + "\nCodigo liquidacion: "+ listaDeLiquidaciones.get(i).getCodigoLiquidacion() + "\nNombre: " + listaDeLiquidaciones.get(i).getNombreLiquidacion() + "\n" );
                nombreDevuelto = listaDeLiquidaciones.get(i).getNombreLiquidacion();
             }
         }

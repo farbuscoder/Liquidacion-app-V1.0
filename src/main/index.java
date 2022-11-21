@@ -1,17 +1,28 @@
+package main;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
+import static files.manageFiles.*;
 
 
 public class index {
     public static void main( String[] args) {
 
-        //Cliente cliente = new Cliente();
+        //main.Cliente cliente = new main.Cliente();
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
 
-        JOptionPane.showMessageDialog(null,"Bienvenido al TP3 de Programacion orientada a objetos con Java");
+        JOptionPane.showMessageDialog(null,"Bienvenido al TP4 de Programación orientada a objetos con Java");
+
+        //Creamos archivo
+        //createFile("file\\hola.xlsx");
+        //createFile("file\\hola.txt");
+
+        //escribirArchivo("file\\hola.txt","Hola desde JAVA");
+        //leerArchivo("file\\hola.txt");
+        borrarArchivo("file\\hola.txt");
 
         //Iniciamos las tres liquidaciones base.
         Liquidacion.liquidacionesBase();
@@ -23,7 +34,7 @@ public class index {
             System.out.println("");
             System.out.println("1. Clientes");
             System.out.println("2. Liquidaciones");
-            System.out.println("3. Vencimientos"); // pronto sera agregado
+            System.out.println("3. main.Vencimientos");
             System.out.println("4. Salir");
             System.out.println("");
             System.out.println("====================================");
