@@ -339,6 +339,37 @@ public class Cliente {
     }// fin del metodo eliminar cliente
 
 
+    //BUSCAR CLIENTES POR CODIGO PARA CODIGO
+    public static String buscarCliente_Cod(String codigo){
+
+        //String codigo = JOptionPane.showInputDialog("Ingrese el código de la liquidación que desea buscar: ");
+        String codigoDevuelto = "--1";
+
+        for(int i = 0; i < listaDeClientes.size();i++){
+            if(listaDeClientes.get(i).obtenerCodigoCliente().equals(codigo)){
+                codigoDevuelto = listaDeClientes.get(i).obtenerCodigoCliente();
+            }
+        }
+        return codigoDevuelto;
+    }
+
+    //BUSCAR CLIENTES POR CODIGO PARA NOMBRE
+    public static String buscarCliente_Nombre(String codigo){
+
+        String NombreDevuelto="";
+
+        for(int i = 0; i < listaDeClientes.size();i++){
+            if(listaDeClientes.get(i).obtenerCodigoCliente().equals(codigo)){
+                NombreDevuelto = listaDeClientes.get(i).obtenerNombre();
+
+            }
+
+        }
+        return NombreDevuelto;
+    }
+
+
+
     //Metodos settler:
 
 

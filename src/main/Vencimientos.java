@@ -126,8 +126,8 @@ public Vencimientos(String nombre, String codigo, String vencimiento){
         for(int i = 0;i< listaDeVencimientos.size();i++){
             System.out.println("================================");
             System.out.println("Vencimiento numero: " + (i + 1) + "\nNombre: " + listaDeVencimientos.get(i).getNombreLiquidacionEnVencimientos()
-            + "\nCodigo de liquidacion: " + listaDeVencimientos.get(i).getCodigoLiquidacionEnVencimientos() +
-                 "\nFecha de Vencimiento: " + listaDeVencimientos.get(i).getFechaVencimiento()
+                    + "\nCodigo de liquidacion: " + listaDeVencimientos.get(i).getCodigoLiquidacionEnVencimientos() +
+                    "\nFecha de Vencimiento: " + listaDeVencimientos.get(i).getFechaVencimiento()
             );
         }
     }
@@ -233,6 +233,46 @@ public Vencimientos(String nombre, String codigo, String vencimiento){
         System.out.printf("Exception: %s\n\n", e.getMessage());
     }// fin del catch
 }// fin del metodo eliminarVencimiento
+
+    //BUSCAR VENCIMIENTOS PARA CODIGO DE VENCIMIENTO
+    public static int buscarVencimientos_Cod(int numero){
+
+        int numeroDevuelto = -1;
+
+
+        for(int i = 0; i < listaDeVencimientos.size();i++){
+            if(i == numero - 1){
+                numeroDevuelto = i ;
+            }
+        }
+        return numeroDevuelto;
+    }
+
+
+    // BUSCAR VENCIMIENTOS PARA NOMBRE de LiquidaciónVencimiento
+    public static String buscarVencimientos_Nombre(int numero){
+
+        String nameDevuelto = "";
+        for(int i = 0; i < listaDeVencimientos.size();i++){
+            if(i == numero){
+                nameDevuelto = listaDeVencimientos.get(numero).getNombreLiquidacionEnVencimientos();
+            }
+        }
+        return nameDevuelto;
+    }// fin del metodo buscarVencimientos_Nombre
+
+    // BUSCAR VENCIMIENTOS PARA NOMBRE de LiquidaciónVencimiento
+    public static String buscarVencimientos_Fecha(int numero){
+
+        String fechaVencimiento = "";
+        for(int i = 0; i < listaDeVencimientos.size();i++){
+            if(i == numero){
+                fechaVencimiento = listaDeVencimientos.get(numero).getFechaVencimiento();
+            }
+        }
+        return fechaVencimiento;
+    }// fin del metodo buscarVencimientos_Nombre
+
 
 
     //Metodo setter y getter
