@@ -1,5 +1,6 @@
 package main;
 import javax.swing.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -44,10 +45,10 @@ public class LiquidacionesImportes {
             System.out.println("MENU DE OPCIONES DE IMPORTE");
             System.out.println("");
             System.out.println("1. Agregar importe");
-            System.out.println("2. Modificar importe");
+            System.out.println("2. Mostrar Clientes, Vencimientos e Importes");
             System.out.println("3. Quitar importe");
             System.out.println("4. Enviar e-mail");
-            System.out.println("5. Mostrar Clientes, Vencimientos e Importes");
+            System.out.println("5. Modificar importe");
             System.out.println("6. Salir");
             System.out.println("");
             System.out.println("====================================");
@@ -62,7 +63,8 @@ public class LiquidacionesImportes {
                         LiquidacionesImportes.agregarImporte();
                         break;
                     case 2:
-                        LiquidacionesImportes.modificarImporte();
+                        LiquidacionesImportes.mostrarImportesVencimientos();
+
                         break;
                     case 3:
                         LiquidacionesImportes.quitarImporte();
@@ -71,7 +73,7 @@ public class LiquidacionesImportes {
                         LiquidacionesImportes.enviaremail();
                         break;
                     case 5:
-                        LiquidacionesImportes.mostrarImportesVencimientos();
+                        LiquidacionesImportes.modificarImporte();
                         break;
                     case 6:
                         salir = true;
@@ -118,7 +120,8 @@ public class LiquidacionesImportes {
             //Agregamos el objeto vencimiento al arraylist listaDeVencimientos con el metodo add.
             listaDeImportes.add(importes);
 
-            //Generamos una nueva entrada en el array importes.
+            //Generamos una nueva entrada en el log importes.
+            escribirArchivo("src\\files\\log\\log_importes.txt"," Un importe para el cliente de código: " + codigoCliDevuelto + ", ha sido agregado");
 
             JOptionPane.showMessageDialog(null, "El importe se agrego exitosamente");
         }catch(IllegalArgumentException e){
@@ -152,11 +155,76 @@ public class LiquidacionesImportes {
 
 
     public static void modificarImporte(){
+        LiquidacionesImportes.mostrarImportesVencimientos();
+        try{
+            //Guardamos en una variable codigo el valor ingresado por el usuario
+            String numero = JOptionPane.showInputDialog("Ingrese el numero del importe que desea modificar: ");
+            int position = -1;
+
+            int numeroInteger = Integer.parseInt(numero);
+
+            //Recorremos el array list listaImportes y encontramos un objeto cuyo codigo coincida con el ingresado.
+            for(int i = 0; i < listaDeImportes.size();i++){
+                if(i==numeroInteger - 1){
+                    position = i;
+                    String importe = JOptionPane.showInputDialog("Ingrese el nuevo importe: ");
+                    listaDeImportes.get(i).ImpLiq(Float.parseFloat(importe));
+                    //Mostramos un mensaje al usuario
+                    JOptionPane.showMessageDialog(null,"El importe ha sido modificado exitosamente!");
+                    //Generamos una entrada en el log de clientes:
+                    escribirArchivo("src\\files\\log\\log_vencimientos.txt"," Un importe de numero: " + numero + ", ha sido modificado");
+                }
+            }
+
+
+
+            //Manejamos el error en el caso de que hayamos ingresado un codigo incorrecto.
+            if(position != -1){
+                System.out.println("");
+            }else{
+                throw new IllegalArgumentException(
+                        "No se ha encontrado un importe que coincida con el numero ingresado"
+                );
+            }
+        }catch (IllegalArgumentException e){
+            System.out.printf("Exception: %s\n\n", e.getMessage());
+        }// fin del catch
     }
 
 
 
     public static void quitarImporte(){
+        LiquidacionesImportes.opcionesLiquidacionesImportes();
+        try{
+            //Guardamos en una variable codigo el valor ingresado por el usuario
+            String numero = JOptionPane.showInputDialog("Ingrese el numero del importe que desea eliminar: ");
+            int position = -1;
+            int numeroInteger = Integer.parseInt(numero);
+
+            //Recorremos el array list listaDeImportes y encontramos un objeto cuyo codigo coincida con el ingresado.
+            for(int i = 0; i < listaDeImportes.size();i++){
+                if(i == numeroInteger - 1){
+                    //Generamos una entrada en el log de clientes:
+                    escribirArchivo("src\\files\\log\\log_vencimientos.txt"," Un importe de numero: " + numero + ", ha sido eliminado");
+                    position = i;
+                    // Quitamos el objeto de la arrayList usando el metodo remove().
+                    listaDeImportes.remove(position);
+                    JOptionPane.showMessageDialog(null,"El importe ha sido eliminado exitosamente!");
+                }
+            }
+
+
+            //Manejamos el error en el caso de que hayamos ingresado un codigo incorrecto.
+            if(position != -1){
+                System.out.println("");
+            }else{
+                throw new IllegalArgumentException(
+                        "No se ha encontrado un importe con el numero ingresado"
+                );
+            }
+        }catch (IllegalArgumentException e){
+            System.out.printf("Exception: %s\n\n", e.getMessage());
+        }// fin del catch
     }
 
 
