@@ -7,7 +7,6 @@ import java.util.Scanner;
 import static files.manageFiles.*;
 
 public class LiquidacionesImportes {
-    //private String key;
     private String codCliente;
     private String nomCliente;
     private int nroVencimiento;
