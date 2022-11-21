@@ -2,6 +2,7 @@ package main;
 
 import java.util.*;
 import javax.swing.JOptionPane;
+import static files.manageFiles.*;
 
 
 public class Cliente {
@@ -54,8 +55,9 @@ public class Cliente {
             System.out.println("2. Mostrar Clientes");
             System.out.println("3. Buscar Cliente por código");
             System.out.println("4. Modificar clientes");
-            System.out.println("5. Eliminar cliente"); // pronto sera agregado
-            System.out.println("6. Salir");
+            System.out.println("5. Eliminar cliente");
+            System.out.println("6. Mostrar log");
+            System.out.println("7. Salir");
             System.out.println("");
             System.out.println("====================================");
 
@@ -81,6 +83,9 @@ public class Cliente {
                         Cliente.eliminarCliente();
                         break;
                     case 6:
+                        leerArchivo("src\\files\\log\\log_clientes.txt");
+                        break;
+                    case 7:
                         salir = true;
                         break;
                     default:
@@ -100,7 +105,7 @@ public class Cliente {
             Cliente cliente = new Cliente();
 
             // Tomamos los valores ingresados por el usuario con JOptionPane y el metodo showInputDialog.
-            String codigo_Cliente = JOptionPane.showInputDialog("Ingrese el codigo del main.Cliente: ");
+            String codigo_Cliente = JOptionPane.showInputDialog("Ingrese el codigo del Cliente: ");
 
             String nombre_Fantasia = JOptionPane.showInputDialog("Ingrese el Nombre completo: ");
 
@@ -126,8 +131,11 @@ public class Cliente {
             // Añadimos al nuevo cliente a la array de listaDeClientes.
             listaDeClientes.add(cliente);
 
+            //Generamos una entrada en el log de clientes:
+            escribirArchivo("src\\files\\log\\log_clientes.txt"," Un nuevo cliente de código: " + codigo_Cliente + ", ha sido agregado");
+
             //Mostramos un mensaje al usuario.
-            JOptionPane.showMessageDialog(null,"El main.Cliente ha sido agregado exitosamente!");
+            JOptionPane.showMessageDialog(null,"El Cliente ha sido agregado exitosamente!");
         }catch(IllegalArgumentException e){
             System.out.println("No se pudo agregar el cliente");
         }// fin del catch
@@ -145,7 +153,7 @@ public class Cliente {
         // Con un ciclo for recorremos el arraylist listaDeClientes y mostramos los datos de cada cliente agregado.
         for(int i = 0;i< listaDeClientes.size();i++){
             System.out.println("================================");
-            System.out.println("main.Cliente numero: " + i + "\nNombre: " + listaDeClientes.get(i).obtenerNombre() + "\n" + "Email: " + listaDeClientes.get(i).obtenerEmail() + "\n" + "Razon social: " + listaDeClientes.get(i).obtenerRazonSocial() + "\n" + "CUIT: " + listaDeClientes.get(i).obtenerCuitPrefijo()+"-"+listaDeClientes.get(i).obtenerCuitMedio()+"-"+listaDeClientes.get(i).obtenerCuitSufijo());
+            System.out.println("Cliente numero: " + i + "\nNombre: " + listaDeClientes.get(i).obtenerNombre() + "\n" + "Email: " + listaDeClientes.get(i).obtenerEmail() + "\n" + "Razon social: " + listaDeClientes.get(i).obtenerRazonSocial() + "\n" + "CUIT: " + listaDeClientes.get(i).obtenerCuitPrefijo()+"-"+listaDeClientes.get(i).obtenerCuitMedio()+"-"+listaDeClientes.get(i).obtenerCuitSufijo());
         }
     }// fin metodo mostrar clientes
 
@@ -192,37 +200,49 @@ public class Cliente {
                                     String nombreCompleto = JOptionPane.showInputDialog("Ingrese el nuevo nombre: ");
                                     listaDeClientes.get(i).setNombreFantasia(nombreCompleto);
                                     //Mostramos un mensaje al usuario.
-                                    JOptionPane.showMessageDialog(null,"El main.Cliente ha sido modificado exitosamente!");
+                                    JOptionPane.showMessageDialog(null,"El Cliente ha sido modificado exitosamente!");
+                                    //Generamos una entrada en el log:
+                                    escribirArchivo("src\\files\\log\\log_clientes.txt","Un cliente de código: " + listaDeClientes.get(i).obtenerCodigoCliente() + ", ha sido modificado");
                                     break;
                                 case 2:
                                     String razonSocial = JOptionPane.showInputDialog("Ingrese la nueva razon social: ");
                                     listaDeClientes.get(i).setRazonSocial(razonSocial);
                                     //Mostramos un mensaje al usuario.
-                                    JOptionPane.showMessageDialog(null,"El main.Cliente ha sido modificado exitosamente!");
+                                    JOptionPane.showMessageDialog(null,"El Cliente ha sido modificado exitosamente!");
+                                    //Generamos una entrada en el log:
+                                    escribirArchivo("src\\files\\log\\log_clientes.txt"," Un cliente de código: " + listaDeClientes.get(i).obtenerCodigoCliente() + ", ha sido modificado");
                                     break;
                                 case 3:
                                     String emailCliente = JOptionPane.showInputDialog("Ingrese el nuevo email: ");
                                     listaDeClientes.get(i).setEmail(emailCliente);
                                     //Mostramos un mensaje al usuario.
-                                    JOptionPane.showMessageDialog(null,"El main.Cliente ha sido modificado exitosamente!");
+                                    JOptionPane.showMessageDialog(null,"El Cliente ha sido modificado exitosamente!");
+                                    //Generamos una entrada en el log:
+                                    escribirArchivo("src\\files\\log\\log_clientes.txt"," Un cliente de código: " + listaDeClientes.get(i).obtenerCodigoCliente() + ", ha sido modificado");
                                     break;
                                 case 4:
                                     int prefijoCuit = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nuevo prefijo: "));
                                     listaDeClientes.get(i).setCuitPrefijo(prefijoCuit);
                                     //Mostramos un mensaje al usuario.
-                                    JOptionPane.showMessageDialog(null,"El main.Cliente ha sido modificado exitosamente!");
+                                    JOptionPane.showMessageDialog(null,"El Cliente ha sido modificado exitosamente!");
+                                    //Generamos una entrada en el log:
+                                    escribirArchivo("src\\files\\log\\log_clientes.txt"," Un cliente de código: " + listaDeClientes.get(i).obtenerCodigoCliente() + ", ha sido modificado");
                                     break;
                                 case 5:
                                     int medioCuit = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nuevo cuit medio: "));
                                     listaDeClientes.get(i).setCuitMedio(medioCuit);
                                     //Mostramos un mensaje al usuario.
-                                    JOptionPane.showMessageDialog(null,"El main.Cliente ha sido modificado exitosamente!");
+                                    JOptionPane.showMessageDialog(null,"El Cliente ha sido modificado exitosamente!");
+                                    //Generamos una entrada en el log:
+                                    escribirArchivo("src\\files\\log\\log_clientes.txt"," Un cliente de código: " + listaDeClientes.get(i).obtenerCodigoCliente() + ", ha sido modificado");
                                     break;
                                 case 6:
                                     int sufijoCuit = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nuevo sufijo: "));
                                     listaDeClientes.get(i).setCuitSufijo(sufijoCuit);
                                     //Mostramos un mensaje al usuario.
-                                    JOptionPane.showMessageDialog(null,"El main.Cliente ha sido modificado exitosamente!");
+                                    JOptionPane.showMessageDialog(null,"El Cliente ha sido modificado exitosamente!");
+                                    //Generamos una entrada en el log:
+                                    escribirArchivo("src\\files\\log\\log_clientes.txt"," Un cliente de código: " + listaDeClientes.get(i).obtenerCodigoCliente() + ", ha sido modificado");
                                     break;
                                 case 7:
                                     salir = true;
@@ -296,9 +316,11 @@ public class Cliente {
             for(int i = 0; i < listaDeClientes.size();i++){
                 if(listaDeClientes.get(i).obtenerCodigoCliente().equals(codigo)){
                     position = i;
+                    //Generamos una entrada en el log:
+                    escribirArchivo("src\\files\\log\\log_clientes.txt"," Un cliente de código: " + listaDeClientes.get(i).obtenerCodigoCliente() + ", ha sido eliminado");
                     // Quitamos el objeto de la arrayList usando el metodo remove().
                     listaDeClientes.remove(position);
-                    JOptionPane.showMessageDialog(null,"El main.Cliente ha sido eliminado exitosamente!");
+                    JOptionPane.showMessageDialog(null,"El Cliente ha sido eliminado exitosamente!");
                 }
             }
 

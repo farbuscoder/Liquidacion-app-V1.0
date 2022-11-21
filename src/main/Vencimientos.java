@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import static files.manageFiles.*;
 
 public class Vencimientos {
 //private String key;
@@ -42,8 +43,9 @@ public Vencimientos(String nombre, String codigo, String vencimiento){
             System.out.println("2. Mostrar vencimientos");
             System.out.println("3. Buscar vencimiento por codigo");
             System.out.println("4. Modificar Vencimiento");
-            System.out.println("5. Quitar vencimiento"); // pronto sera agregado
-            System.out.println("6. Salir");
+            System.out.println("5. Eliminar vencimiento");
+            System.out.println("6. Mostrar log");
+            System.out.println("7. Salir");
             System.out.println("");
             System.out.println("====================================");
 
@@ -69,6 +71,9 @@ public Vencimientos(String nombre, String codigo, String vencimiento){
                         Vencimientos.eliminarVencimiento();
                         break;
                     case 6:
+                        leerArchivo("src\\files\\log\\log_vencimientos.txt");
+                        break;
+                    case 7:
                         salir = true;
                         break;
                     default:
@@ -101,6 +106,8 @@ public Vencimientos(String nombre, String codigo, String vencimiento){
 
             //Agregamos el objeto vencimiento al arraylist listaDeVencimientos con el metodo add.
             listaDeVencimientos.add(vencimiento);
+            //Generamos una entrada en el log de clientes:
+            escribirArchivo("src\\files\\log\\log_vencimientos.txt"," Un nuevo vencimiento para la liquidacion de codigo: " + codigo_Liquidacion + ", ha sido agregado");
             JOptionPane.showMessageDialog(null, "El vencimiento se agrego exitosamente");
         }catch(IllegalArgumentException e){
             System.out.println("No se pudo agregar el cliente");
@@ -173,6 +180,8 @@ public Vencimientos(String nombre, String codigo, String vencimiento){
                      listaDeVencimientos.get(i).setFechaVencimiento(fecha);
                      //Mostramos un mensaje al usuario
                      JOptionPane.showMessageDialog(null,"El vencimiento ha sido modificado exitosamente!");
+                     //Generamos una entrada en el log de clientes:
+                     escribirArchivo("src\\files\\log\\log_vencimientos.txt"," Un vencimiento para la liquidacion de codigo: " + listaDeVencimientos.get(i).getCodigoLiquidacionEnVencimientos() + ", ha sido modificado");
                  }
              }
 
@@ -202,6 +211,8 @@ public Vencimientos(String nombre, String codigo, String vencimiento){
         //Recorremos el array list listaDeVencimientos y encontramos un objeto cuyo codigo coincida con el ingresado.
         for(int i = 0; i < listaDeVencimientos.size();i++){
             if(listaDeVencimientos.get(i).getCodigoLiquidacionEnVencimientos().equals(codigo)){
+                //Generamos una entrada en el log de clientes:
+                escribirArchivo("src\\files\\log\\log_vencimientos.txt"," Un vencimiento para la liquidacion de codigo: " + listaDeVencimientos.get(i).getCodigoLiquidacionEnVencimientos() + ", ha sido eliminado");
                 position = i;
                 // Quitamos el objeto de la arrayList usando el metodo remove().
                 listaDeVencimientos.remove(position);

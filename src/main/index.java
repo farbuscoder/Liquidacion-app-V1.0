@@ -16,13 +16,16 @@ public class index {
 
         JOptionPane.showMessageDialog(null,"Bienvenido al TP4 de Programación orientada a objetos con Java");
 
-        //Creamos archivo
-        //createFile("file\\hola.xlsx");
-        //createFile("file\\hola.txt");
+        //CREAMOS ARCHIVO
+       createFile("src\\files\\log\\log_clientes.txt");
+       createFile("src\\files\\log\\log_vencimientos.txt");
+       createFile("src\\files\\log\\log_liquidaciones.txt");
 
-        //escribirArchivo("file\\hola.txt","Hola desde JAVA");
+        //escribirArchivo("src\\files\\log\\log_clientes.txt","Hola desde JAVA");
+        //escribirArchivo("src\\files\\log\\log_clientes.txt","Hola cliente JAVA");
+        //escribirArchivo("src\\files\\log\\log_clientes.txt","Hola desde JAVA 2 ");
         //leerArchivo("file\\hola.txt");
-        borrarArchivo("file\\hola.txt");
+        //borrarArchivo("files\\hola.txt");
 
         //Iniciamos las tres liquidaciones base.
         Liquidacion.liquidacionesBase();
@@ -34,7 +37,7 @@ public class index {
             System.out.println("");
             System.out.println("1. Clientes");
             System.out.println("2. Liquidaciones");
-            System.out.println("3. main.Vencimientos");
+            System.out.println("3. Vencimientos");
             System.out.println("4. Salir");
             System.out.println("");
             System.out.println("====================================");

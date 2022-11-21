@@ -2,6 +2,7 @@ package main;
 
 import javax.swing.*;
 import java.util.*;
+import static files.manageFiles.*;
 
 public class Liquidacion {
 
@@ -58,7 +59,8 @@ public class Liquidacion {
             System.out.println("3. Buscar Liquidacion por código");
             System.out.println("4. Modificar liquidacion");
             System.out.println("5. Eliminar liquidacion");
-            System.out.println("6. Salir");
+            System.out.println("6. Mostrar log");
+            System.out.println("7. Salir");
             System.out.println("");
             System.out.println("====================================");
 
@@ -84,6 +86,9 @@ public class Liquidacion {
                         Liquidacion.eliminarLiquidacion();
                         break;
                     case 6:
+                        leerArchivo("src\\files\\log\\log_liquidaciones.txt");
+                        break;
+                    case 7:
                         salir = true;
                         break;
                     default:
@@ -114,6 +119,9 @@ public class Liquidacion {
             // Añadimos la nueva liquidacion a la array de lista De Liquidaciones.
             listaDeLiquidaciones.add(liquidacion);
 
+            //Generamos una entrada en el log de liquidaciones:
+            escribirArchivo("src\\files\\log\\log_liquidaciones.txt"," Una nuevo nueva de código: " + codigo_Liquidacion + ", ha sido agregada");
+
             //Mostramos un mensaje al usuario
             JOptionPane.showMessageDialog(null,"La liquidacion ha sido agregada exitosamente!");
         }catch (IllegalArgumentException e){
@@ -136,7 +144,7 @@ public class Liquidacion {
             for(int i = 0;i< listaDeLiquidaciones.size();i++){
                 System.out.println("================================");
                 //Agregar còdigo liquidacion antes del nombre
-                System.out.println("main.Liquidacion numero: " + (i + 1) + "\nCodigo liquidacion: "+ listaDeLiquidaciones.get(i).getCodigoLiquidacion() + "\nNombre: " + listaDeLiquidaciones.get(i).getNombreLiquidacion() + "\n" );
+                System.out.println("Liquidacion numero: " + (i + 1) + "\nCodigo liquidacion: "+ listaDeLiquidaciones.get(i).getCodigoLiquidacion() + "\nNombre: " + listaDeLiquidaciones.get(i).getNombreLiquidacion() + "\n" );
             }
         }catch(IllegalAccessError error){
             System.out.println("Ha ocurrido un error");
@@ -154,7 +162,7 @@ public class Liquidacion {
                 if(listaDeLiquidaciones.get(i).getCodigoLiquidacion().equals(codigo)){
                     System.out.println("================================");
                     System.out.println("Resultado de la busqueda: ");
-                    System.out.println("main.Liquidacion numero: " + (i + 1) + "\nCodigo liquidacion: "+ listaDeLiquidaciones.get(i).getCodigoLiquidacion() + "\nNombre: " + listaDeLiquidaciones.get(i).getNombreLiquidacion() + "\n" );
+                    System.out.println("Liquidacion numero: " + (i + 1) + "\nCodigo liquidacion: "+ listaDeLiquidaciones.get(i).getCodigoLiquidacion() + "\nNombre: " + listaDeLiquidaciones.get(i).getNombreLiquidacion() + "\n" );
                     position = i;
                 }
             }
@@ -172,7 +180,7 @@ public class Liquidacion {
         }// fin del catch
     }// fin del metodo buscarLiquidaciones
 
-    //BUSCAR LIQUIDACIONES POR CODIGO
+    //BUSCAR LIQUIDACIONES PARA CODIGO
     public static String buscarLiquidaciones_Cod(String codigo){
 
             //String codigo = JOptionPane.showInputDialog("Ingrese el código de la liquidación que desea buscar: ");
@@ -186,7 +194,7 @@ public class Liquidacion {
             return codigoDevuelto;
     }
 
-    // BUSCAR LIQUIDACIONES POR NOMBRE
+    // BUSCAR LIQUIDACIONES PARA NOMBRE
     public static String buscarLiquidaciones_Nombre(String codigo){
 
         //String codigo = JOptionPane.showInputDialog("Ingrese el código de la liquidación que desea buscar: ");
@@ -218,6 +226,8 @@ public class Liquidacion {
                     listaDeLiquidaciones.get(i).setNombreLiquidacion(name);
                     //Mostramos un mensaje al usuario
                     JOptionPane.showMessageDialog(null,"La liquidacion ha sido modificada exitosamente!");
+                    //Generamos una entrada en el log de liquidaciones:
+                    escribirArchivo("src\\files\\log\\log_liquidaciones.txt"," Una liquidacion de código: " + listaDeLiquidaciones.get(i).getCodigoLiquidacion() + ", ha sido modificada");
 
                 }
             }
@@ -246,6 +256,8 @@ public class Liquidacion {
 
             for(int i = 0; i < listaDeLiquidaciones.size();i++){
                 if(listaDeLiquidaciones.get(i).getCodigoLiquidacion().equals(codigo)){
+                    //Generamos una entrada en el log de liquidaciones:
+                    escribirArchivo("src\\files\\log\\log_liquidaciones.txt"," Una liquidacion de código: " + listaDeLiquidaciones.get(i).getCodigoLiquidacion() + ", ha sido eliminada");
                     position = i;
                     listaDeLiquidaciones.remove(position);
                     JOptionPane.showMessageDialog(null,"La liquidacion ha sido eliminada exitosamente!");
